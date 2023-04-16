@@ -12,7 +12,8 @@ public class GanttChart {
     private int time;
     private int totalWaitingTime;
 
-    public GanttChart() {
+    public GanttChart() 
+    {
         this.ganttChartBars = new ArrayList<>();        
 
         /*Using Lambda Expression directly*/
@@ -26,7 +27,9 @@ public class GanttChart {
         this.time = 0;
         this.totalWaitingTime = 0;
     }
-    public GanttChart(ArrayList<Process> processes) {
+
+    public GanttChart(ArrayList<Process> processes) 
+    {
         ganttChartBars = new ArrayList<>();
         this.processes = new TreeSet<>(new Comparator<Process>(){
             @Override
@@ -57,7 +60,9 @@ public class GanttChart {
             if(time < process.getArrivalTime())
             {
                 int idletime = process.getArrivalTime() - time;
-                ganttChartBars.add(new GanttChartBar(new Process(-1,idletime),time));
+                GanttChartBar idle = new GanttChartBar(new Process(-1,idletime),time);
+                idle.setEndTime(process.getArrivalTime());
+                ganttChartBars.add(idle);
                 time = process.getArrivalTime();
             }
             ganttChartBars.add(new GanttChartBar(process, time));
@@ -133,7 +138,8 @@ public class GanttChart {
         }
     }
 
-    public void printGanttChart(){
+    public void printGanttChart()
+    {
         int i = 0;
         System.out.println("Gantt Chart:");
         for (GanttChartBar ganttChartBar : ganttChartBars) {
@@ -157,7 +163,13 @@ public class GanttChart {
 
     int getCurrentTime(){
         return time;
-    }   
+    }
+
+    public ArrayList<GanttChartBar> getGanttChartBars()
+    {
+        return ganttChartBars;
+    }
+
 
 }
 

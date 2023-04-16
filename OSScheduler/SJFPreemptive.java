@@ -50,6 +50,27 @@ public class SJFPreemptive extends SJF {
     public String toString() {
         return "SJF Preemptive";
     }
+    public ArrayList<GanttChartBar> getGanttChartBars(){
+        ArrayList <Process> list = new ArrayList<>(processes);
+        GanttChart ganttChart = new GanttChart();
+        time = 0;
+        totalWaitingTime = 0;
+        averageWaitingTime = 0;
+        Process process = null;
+
+        while (list.size() > 0){
+            process = nextProcess(list, time);
+            ganttChart.Schedule(process);
+            process.remainingTime--;
+            if(process.remainingTime == 0)
+            {
+                list.remove(process);
+            }
+            time++;
+        }
+        ganttChart.calculateWaitingTime();
+        return ganttChart.getGanttChartBars();
+    }
     
     
 }

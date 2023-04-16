@@ -62,6 +62,22 @@ public class SJF extends SchedulingAlgorithm {
         }
         return process;
     }
-
-    
+    public ArrayList<GanttChartBar> getGanttChartBars() 
+    {
+        ArrayList <Process> list = new ArrayList<>(processes);
+        GanttChart ganttChart = new GanttChart();
+        time = 0;
+        totalWaitingTime = 0;
+        averageWaitingTime = 0;
+        Process process = null;
+        while (list.size() > 0){
+            process = nextProcess(list, time);
+            ganttChart.Schedule(process);
+            ganttChart.passTime(process.getBurstTime());
+            list.remove(process);
+            time += process.getBurstTime();
+        }
+        ganttChart.calculateWaitingTime();
+        return ganttChart.getGanttChartBars();
+    }
 }

@@ -60,4 +60,17 @@ public class FCFS extends SchedulingAlgorithm {
         System.out.println("Average Waiting Time: " + averageWaitingTime + " ms");
     }
 
+    public ArrayList<GanttChartBar> getGanttChartBars() {
+        GanttChart ganttChart = new GanttChart();
+        time = 0;
+        totalWaitingTime = 0;
+        averageWaitingTime = 0;
+        sort();
+        for (Process p : sortedProcesses) {
+            ganttChart.Schedule(p);
+            ganttChart.passTime(p.getBurstTime());
+        }
+        ganttChart.calculateWaitingTime();
+        return ganttChart.getGanttChartBars();
+    }
 }
