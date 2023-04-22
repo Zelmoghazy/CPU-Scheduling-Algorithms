@@ -10,8 +10,8 @@ public class GanttChart {
     private ArrayList<GanttChartBar> ganttChartBars;
     private SortedSet<Process> processes; //Sorted processes with PID, no duplicates
     private int time;
-    private int totalWaitingTime;
-    private int totalTurnAroundTime;
+    private double totalWaitingTime;
+    private double totalTurnAroundTime;
 
     public GanttChart() 
     {
@@ -93,10 +93,10 @@ public class GanttChart {
     public int getTime(){
         return time;
     }
-    public int getTotalWaitingTime(){
+    public double getTotalWaitingTime(){
         return totalWaitingTime;
     }
-    public int getTotalTurnAroundTime(){
+    public double getTotalTurnAroundTime(){
         return totalTurnAroundTime;
     }
     public void calculateWaitingTime()
