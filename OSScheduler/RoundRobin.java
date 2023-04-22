@@ -22,6 +22,8 @@ public class RoundRobin extends FCFS {
         time = 0;
         totalWaitingTime = 0; 
         averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
         sort();
         list = new ArrayList<>(sortedProcesses);
         
@@ -69,6 +71,7 @@ public class RoundRobin extends FCFS {
         ganttChart.calculateWaitingTime();
         ganttChart.printGanttChart();
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
     }
 
     public ArrayList<GanttChartBar> getGanttChartBars() {
@@ -78,6 +81,8 @@ public class RoundRobin extends FCFS {
         time = 0;
         totalWaitingTime = 0; 
         averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
         sort();
         list = new ArrayList<>(sortedProcesses);
         
@@ -123,7 +128,8 @@ public class RoundRobin extends FCFS {
             }
         }
         ganttChart.calculateWaitingTime();
+        averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
         return ganttChart.getGanttChartBars();
     }
-
 }

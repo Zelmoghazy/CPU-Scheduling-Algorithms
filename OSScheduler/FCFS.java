@@ -4,12 +4,14 @@ import java.util.TreeSet;
 
 public class FCFS extends SchedulingAlgorithm {
 
-    public FCFS(ArrayList<Process> processes) {
+    public FCFS(ArrayList<Process> processes) 
+    {
         super(processes);
     }
 
     @Override
-    protected void sort() {
+    protected void sort() 
+    {
         /* Lambda Expression used instead of Creating seperate class */
         this.sortedProcesses = new TreeSet<>(new Comparator<Process>() {
             @Override
@@ -25,7 +27,8 @@ public class FCFS extends SchedulingAlgorithm {
         });
 
         for (Process p : processes) {
-            sortedProcesses.add(p); // Add all processes to sortedProcesses which will sort them based on arrival time
+            // Add all processes to sortedProcesses which will sort them based on arrival time
+            sortedProcesses.add(p); 
         }
     }
 
@@ -36,6 +39,8 @@ public class FCFS extends SchedulingAlgorithm {
         time = 0;
         totalWaitingTime = 0;
         averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
         sort();
         for (Process p : sortedProcesses) {
             ganttChart.Schedule(p);
@@ -44,6 +49,7 @@ public class FCFS extends SchedulingAlgorithm {
         ganttChart.calculateWaitingTime();
         ganttChart.printGanttChart();
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
     }
 
     @Override
@@ -58,6 +64,7 @@ public class FCFS extends SchedulingAlgorithm {
             System.out.println(p);
         }
         System.out.println("Average Waiting Time: " + averageWaitingTime + " ms");
+        System.out.println("Average Turnaround Time: " + averageTurnAroundTime + " ms");
     }
 
     public ArrayList<GanttChartBar> getGanttChartBars() {
@@ -65,12 +72,16 @@ public class FCFS extends SchedulingAlgorithm {
         time = 0;
         totalWaitingTime = 0;
         averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
         sort();
         for (Process p : sortedProcesses) {
             ganttChart.Schedule(p);
             ganttChart.passTime(p.getBurstTime());
         }
         ganttChart.calculateWaitingTime();
+        averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
         return ganttChart.getGanttChartBars();
     }
 }

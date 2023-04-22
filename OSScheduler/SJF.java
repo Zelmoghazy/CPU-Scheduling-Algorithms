@@ -19,6 +19,8 @@ public class SJF extends SchedulingAlgorithm {
         time = 0;
         totalWaitingTime = 0;
         averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
         Process process = null;
         while (list.size() > 0){
             process = nextProcess(list, time);
@@ -30,6 +32,7 @@ public class SJF extends SchedulingAlgorithm {
         ganttChart.calculateWaitingTime();
         ganttChart.printGanttChart();
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
     }
 
     @Override
@@ -45,6 +48,7 @@ public class SJF extends SchedulingAlgorithm {
             System.out.println(p);
         }
         System.out.println("Average Waiting Time: " + averageWaitingTime + " ms");
+        System.out.println("Average Turnaround Time: " + averageTurnAroundTime + " ms");
     }
 
     /*Shortest process within time period */
@@ -62,6 +66,7 @@ public class SJF extends SchedulingAlgorithm {
         }
         return process;
     }
+    
     public ArrayList<GanttChartBar> getGanttChartBars() 
     {
         ArrayList <Process> list = new ArrayList<>(processes);
@@ -69,6 +74,8 @@ public class SJF extends SchedulingAlgorithm {
         time = 0;
         totalWaitingTime = 0;
         averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
         Process process = null;
         while (list.size() > 0){
             process = nextProcess(list, time);
@@ -78,6 +85,8 @@ public class SJF extends SchedulingAlgorithm {
             time += process.getBurstTime();
         }
         ganttChart.calculateWaitingTime();
+        averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
         return ganttChart.getGanttChartBars();
     }
 }

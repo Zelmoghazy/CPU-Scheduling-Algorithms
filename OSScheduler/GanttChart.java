@@ -11,11 +11,11 @@ public class GanttChart {
     private SortedSet<Process> processes; //Sorted processes with PID, no duplicates
     private int time;
     private int totalWaitingTime;
+    private int totalTurnAroundTime;
 
     public GanttChart() 
     {
         this.ganttChartBars = new ArrayList<>();        
-
         /*Using Lambda Expression directly*/
         processes = new TreeSet<>(new Comparator<Process>(){
             @Override
@@ -23,9 +23,9 @@ public class GanttChart {
                 return p1.getPID() - p2.getPID();
             }
         });
-
         this.time = 0;
         this.totalWaitingTime = 0;
+        this.totalTurnAroundTime = 0;
     }
 
     public GanttChart(ArrayList<Process> processes) 
@@ -57,7 +57,7 @@ public class GanttChart {
         /*If the process is not started yet or a difference process comes, add a new bar to the gantt chart*/
         if (last == -1 || ganttChartBars.get(last).getProcess() != process)
         {
-            if(time < process.getArrivalTime())
+            if(time < process.getArrivalTime()) // Idle time
             {
                 int idletime = process.getArrivalTime() - time;
                 GanttChartBar idle = new GanttChartBar(new Process(-1,idletime),time);
@@ -96,7 +96,9 @@ public class GanttChart {
     public int getTotalWaitingTime(){
         return totalWaitingTime;
     }
-
+    public int getTotalTurnAroundTime(){
+        return totalTurnAroundTime;
+    }
     public void calculateWaitingTime()
     {
         totalWaitingTime = 0;
@@ -134,7 +136,9 @@ public class GanttChart {
                 }
             }
             process.setWaitingTime(waitingTime);
+            process.setTurnAroundTime(waitingTime+process.getBurstTime());
             totalWaitingTime += waitingTime;
+            totalTurnAroundTime += (waitingTime+process.getBurstTime());
         }
     }
 
@@ -169,7 +173,6 @@ public class GanttChart {
     {
         return ganttChartBars;
     }
-
 
 }
 

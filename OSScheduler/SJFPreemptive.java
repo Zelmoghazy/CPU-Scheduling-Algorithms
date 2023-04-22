@@ -14,6 +14,8 @@ public class SJFPreemptive extends SJF {
         time = 0;
         totalWaitingTime = 0;
         averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
         Process process = null;
 
         while (list.size() > 0){
@@ -29,6 +31,7 @@ public class SJFPreemptive extends SJF {
         ganttChart.calculateWaitingTime();
         ganttChart.printGanttChart();
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
     }
     
     @Override
@@ -37,7 +40,8 @@ public class SJFPreemptive extends SJF {
         Process process = list.get(0); // First process in list
         for (Process p : list)
         {
-            if ((p.getArrivalTime() <= time && p.remainingTime < process.remainingTime) || // Start time is less than current process and burst time is less than current process
+            // Start time is less than current process and burst time is less than current process
+            if ((p.getArrivalTime() <= time && p.remainingTime < process.remainingTime) || 
                 (p.getArrivalTime() <= time && process.getArrivalTime() > time))
             {
                 process = p;
@@ -50,14 +54,16 @@ public class SJFPreemptive extends SJF {
     public String toString() {
         return "SJF Preemptive";
     }
+
     public ArrayList<GanttChartBar> getGanttChartBars(){
         ArrayList <Process> list = new ArrayList<>(processes);
         GanttChart ganttChart = new GanttChart();
         time = 0;
         totalWaitingTime = 0;
         averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
         Process process = null;
-
         while (list.size() > 0){
             process = nextProcess(list, time);
             ganttChart.Schedule(process);
@@ -69,8 +75,8 @@ public class SJFPreemptive extends SJF {
             time++;
         }
         ganttChart.calculateWaitingTime();
+        averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
         return ganttChart.getGanttChartBars();
     }
-    
-    
 }

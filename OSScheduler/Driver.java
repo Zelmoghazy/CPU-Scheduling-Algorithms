@@ -5,7 +5,7 @@ public class Driver {
 
         ArrayList<Process> processes = new ArrayList<>();
         
-       
+        /* 
         processes.add(new Process(1, 5, 4));
         processes.add(new Process(2, 4, 6));
         processes.add(new Process(3, 3, 0));
@@ -14,8 +14,8 @@ public class Driver {
 
         FCFS fcfs = new FCFS(processes);
         fcfs.print();
-  
-        /* 
+        */
+     
         processes.add(new Process(1, 5, 0));
         processes.add(new Process(2, 3, 1));
         processes.add(new Process(3, 1, 2));
@@ -24,7 +24,7 @@ public class Driver {
 
         RoundRobin rr = new RoundRobin(processes, 2);
         rr.print();
-        */
+     
         /* 
         processes.add(new Process(1, 11, 0, 2));    
         processes.add(new Process(2, 28, 5, 0));    
@@ -34,7 +34,5 @@ public class Driver {
         Priority priority = new Priority(processes);
         priority.print();
         */
-      
-        
     }
 }

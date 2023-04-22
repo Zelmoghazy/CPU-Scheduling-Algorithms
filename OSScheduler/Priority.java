@@ -11,7 +11,8 @@ public class Priority extends SchedulingAlgorithm {
 
     @Override
     void sort() {
-        if (sortedProcesses == null) {
+        if (sortedProcesses == null) 
+        {
             sortedProcesses = new TreeSet<>(new Comparator<Process>() {
                 @Override
                 public int compare(Process o1, Process o2) {
@@ -47,6 +48,8 @@ public class Priority extends SchedulingAlgorithm {
         time = 0;
         totalWaitingTime = 0;
         averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
         sort();
         do{
             ganttChart.Schedule(sortedProcesses.first());
@@ -57,6 +60,7 @@ public class Priority extends SchedulingAlgorithm {
         ganttChart.calculateWaitingTime();
         ganttChart.printGanttChart();
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
     }
 
     @Override
@@ -67,11 +71,31 @@ public class Priority extends SchedulingAlgorithm {
         }
         System.out.println();
         System.out.println(Process.getHeader());
-        for (Process p : processes) {
+        for (Process p : processes) 
+        {
             System.out.println(p);
         }
         System.out.println("Average Waiting Time: " + averageWaitingTime + " ms");
+        System.out.println("Average Turnaround Time: " + averageWaitingTime + " ms");
     }
-
     
+    public ArrayList<GanttChartBar> getGanttChartBars() {
+        ganttChart = new GanttChart(processes);
+        time = 0;
+        totalWaitingTime = 0;
+        averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
+        sort();
+        do{
+            ganttChart.Schedule(sortedProcesses.first());
+            ganttChart.passTime(sortedProcesses.first().getBurstTime());
+            time = ganttChart.getTime();
+            sort();
+        }while(!sortedProcesses.isEmpty());
+        ganttChart.calculateWaitingTime();
+        averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
+        return ganttChart.getGanttChartBars();
+    }
 }

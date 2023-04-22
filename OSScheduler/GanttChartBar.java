@@ -7,7 +7,6 @@ public class GanttChartBar {
         this.process = process;
         this.startTime = startTime;
     }
-
     public Process getProcess() {
         return process;
     }

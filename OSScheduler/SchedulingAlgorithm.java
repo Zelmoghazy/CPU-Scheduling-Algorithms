@@ -7,7 +7,9 @@ public abstract class SchedulingAlgorithm
     /* Doesnt allow duplicates, Sorted */
     SortedSet<Process> sortedProcesses; 
     double averageWaitingTime;
+    double averageTurnAroundTime;
     double totalWaitingTime;
+    double totalTurnAroundTime;
     int time;
 
     public SchedulingAlgorithm(ArrayList<Process> processes) 
@@ -27,5 +29,4 @@ public abstract class SchedulingAlgorithm
     public String getName(){
         return this.getClass().getName();
     }
-    
 }

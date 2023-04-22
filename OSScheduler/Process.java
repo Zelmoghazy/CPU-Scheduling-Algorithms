@@ -4,6 +4,7 @@ public class Process {
     private int arrivalTime;
     private int startTime;
     private int waitingTime;
+    private int turnAroundTime;
     private int priority;
     int remainingTime;
 
@@ -52,16 +53,25 @@ public class Process {
         return startTime;
     }
 
-    public int getWaitingTime() {
-        return waitingTime;
-    }
-
     public void setStartTime(int startTime) {
         this.startTime = startTime;
     }
 
+    public int getWaitingTime() {
+        return waitingTime;
+    }
+
     public void setWaitingTime(int waitingTime) {
         this.waitingTime = waitingTime;
+    }
+
+    public int getTurnAroundTime()
+    {
+        return turnAroundTime;
+    }
+
+    public void setTurnAroundTime (int turnAroundTime){
+        this.turnAroundTime = turnAroundTime;
     }
 
     public int getPriority() {
@@ -79,11 +89,11 @@ public class Process {
     }
 
     public static String getHeader() {
-        return "PID\tBurst Time\tArrival Time\tStarting Time\tWaiting Time\tPriority";
+        return "PID\tBurst Time\tArrival Time\tStarting Time\tWaiting Time\tTurnaround Time\tPriority";
     }
     /*to string */
     public String toString() {
-        return PID + "\t" + burstTime + "\t\t" + arrivalTime + "\t\t" + startTime + "\t\t" + waitingTime + "\t\t" + priority;
+        return PID + "\t" + burstTime + "\t\t" + arrivalTime + "\t\t" + startTime + "\t\t" + waitingTime + "\t\t" + turnAroundTime + "\t\t" + priority;
     }
 
 }
