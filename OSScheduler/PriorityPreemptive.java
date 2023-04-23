@@ -61,4 +61,27 @@ public class PriorityPreemptive extends Priority {
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
         averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
     }
+    @Override
+    public ArrayList<GanttChartBar> getGanttChartBars() {
+        ganttChart = new GanttChart(processes);
+        time = 0;
+        totalWaitingTime = 0;
+        averageWaitingTime = 0;
+        totalTurnAroundTime = 0;
+        averageTurnAroundTime = 0;
+        sort();
+        do {
+            ganttChart.Schedule(sortedProcesses.first());
+            sortedProcesses.first().remainingTime--;
+            if (sortedProcesses.first().remainingTime == 0) {
+                priority = Integer.MAX_VALUE;
+            }
+            time++;
+            sort();
+        } while (!sortedProcesses.isEmpty());
+        ganttChart.calculateWaitingTime();
+        averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
+        averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
+        return ganttChart.getGanttChartBars();
+    }
 }
