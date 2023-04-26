@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -25,7 +24,8 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage s1) {
-        HBox root = new HBox(0); // 10 pixels of spacing between rectangles
+        HBox root = new HBox(0); 
+
         ArrayList<Process> processes = new ArrayList<>();
         processes.add(new Process(1, 5, 0));
         processes.add(new Process(2, 3, 1));
@@ -33,10 +33,9 @@ public class GUI extends Application {
         processes.add(new Process(4, 2, 3));
         processes.add(new Process(5, 3, 4));
 
-        Button button = new Button("Stop");
-        Button button2 = new Button("Play");
 
-        Timeline dynamic_gunt = new Timeline();
+
+        Timeline dynamicGantt = new Timeline();
 
         int time_quantum = 2;
         RoundRobin rr = new RoundRobin(processes, time_quantum);
@@ -65,26 +64,30 @@ public class GUI extends Application {
                         root.getChildren().add(stack);
 
                     });
-                    dynamic_gunt.getKeyFrames().add(kf);
+                    dynamicGantt.getKeyFrames().add(kf);
                 }
             }
 
         }
-        dynamic_gunt.play();
+        dynamicGantt.play();
 
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+        Button button1 = new Button("Stop");
+        Button button2 = new Button("Play");
+
+        /* Stop Button Handler */
+        EventHandler<ActionEvent> stopEvent = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
-                stop_value += (int) dynamic_gunt.getCurrentTime().toSeconds();
-                dynamic_gunt.pause();
-                dynamic_gunt.getKeyFrames().clear();
+                stop_value += (int) dynamicGantt.getCurrentTime().toSeconds();
+                dynamicGantt.pause();
+                dynamicGantt.getKeyFrames().clear();
             }
         };
 
-        button.setOnAction(event);
+        button1.setOnAction(stopEvent);
 
-        EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
+        EventHandler<ActionEvent> playEvent = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
-                // Timeline dynamic_gunt = new Timeline();
+                // Timeline dynamicGantt = new Timeline();
                 processes.add(new Process(6, 4, 3));
                 RoundRobin rr = new RoundRobin(processes, time_quantum);
                 ArrayList<GanttChartBar> ganttChartBars = rr.getGanttChartBars();
@@ -110,7 +113,6 @@ public class GUI extends Application {
                 int index = 0;
                 for (GanttChartBar ganttChartBar : ganttChartBars) {
                     for (int i = 0; i < ganttChartBar.getDuration(); i++) {
-                        // System.out.println(ganttChartBar.getDuration());
                         index++;
                         if (index < stop_value) {
                             continue;
@@ -119,23 +121,22 @@ public class GUI extends Application {
                             Rectangle rectangle = createRectangle(ganttChartBar.getProcess().getPID());
                             Text h = new Text(burst_count.get(ganttChartBar.getProcess()).toString() + "\n" + index);
                             // Text h = new Text("P"+ ganttChartBar.getProcess().getPID() + "\n" + index);
-                            burst_count.put(ganttChartBar.getProcess(),
-                                    burst_count.get(ganttChartBar.getProcess()) - 1);
+                            burst_count.put(ganttChartBar.getProcess(),burst_count.get(ganttChartBar.getProcess()) - 1);
                             KeyFrame kf = new KeyFrame(Duration.seconds(index - stop_value + 1), actionEvent -> {
                                 stack.getChildren().addAll(rectangle, h);
                                 root.getChildren().add(stack);
                             });
-                            dynamic_gunt.getKeyFrames().add(kf);
+                            dynamicGantt.getKeyFrames().add(kf);
                         }
                     }
                 }
-                dynamic_gunt.playFromStart();
+                dynamicGantt.playFromStart();
             }
         };
 
-        button2.setOnAction(event2);
+        button2.setOnAction(playEvent);
 
-        root.getChildren().addAll(button, button2);
+        root.getChildren().addAll(button1, button2);
         Scene scene = new Scene(root, 800, 350);
         s1.setScene(scene);
         s1.show();
@@ -153,5 +154,4 @@ public class GUI extends Application {
         Rectangle rectangle = new Rectangle(width, height, color);
         return rectangle;
     }
-
 }
