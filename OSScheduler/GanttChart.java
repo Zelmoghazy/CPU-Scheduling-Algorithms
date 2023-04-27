@@ -137,8 +137,10 @@ public class GanttChart {
             }
             process.setWaitingTime(waitingTime);
             process.setTurnAroundTime(waitingTime+process.getBurstTime());
-            totalWaitingTime += waitingTime;
-            totalTurnAroundTime += (waitingTime+process.getBurstTime());
+            if (process.getPID() != -1){
+                totalWaitingTime += waitingTime;
+                totalTurnAroundTime += (waitingTime+process.getBurstTime());
+            }
         }
     }
 

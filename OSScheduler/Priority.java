@@ -52,6 +52,12 @@ public class Priority extends SchedulingAlgorithm {
         averageTurnAroundTime = 0;
         sort();
         do{
+            if(sortedProcesses.isEmpty())
+            {
+                time++;
+                sort();
+                continue;
+            }
             ganttChart.Schedule(sortedProcesses.first());
             ganttChart.passTime(sortedProcesses.first().getBurstTime());
             time = ganttChart.getTime();
@@ -88,6 +94,12 @@ public class Priority extends SchedulingAlgorithm {
         averageTurnAroundTime = 0;
         sort();
         do{
+            if(sortedProcesses.isEmpty())
+            {
+                time++;
+                sort();
+                continue;
+            }
             ganttChart.Schedule(sortedProcesses.first());
             ganttChart.passTime(sortedProcesses.first().getBurstTime());
             time = ganttChart.getTime();

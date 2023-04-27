@@ -48,6 +48,12 @@ public class PriorityPreemptive extends Priority {
         averageTurnAroundTime = 0;
         sort();
         do {
+            if(sortedProcesses.isEmpty())
+            {
+                time++;
+                sort();
+                continue;
+            }
             ganttChart.Schedule(sortedProcesses.first());
             sortedProcesses.first().remainingTime--;
             if (sortedProcesses.first().remainingTime == 0) {
@@ -71,6 +77,12 @@ public class PriorityPreemptive extends Priority {
         averageTurnAroundTime = 0;
         sort();
         do {
+            if(sortedProcesses.isEmpty())
+            {
+                time++;
+                sort();
+                continue;
+            }
             ganttChart.Schedule(sortedProcesses.first());
             sortedProcesses.first().remainingTime--;
             if (sortedProcesses.first().remainingTime == 0) {
