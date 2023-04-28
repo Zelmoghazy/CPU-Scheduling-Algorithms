@@ -4,6 +4,7 @@ import java.util.TreeSet;
 
 public class Priority extends SchedulingAlgorithm {
     private GanttChart ganttChart;
+    ArrayList<Process> waitingProcesses = new ArrayList<Process>(processes);
 
     public Priority(ArrayList<Process> processes) {
         super(processes);
@@ -61,8 +62,9 @@ public class Priority extends SchedulingAlgorithm {
             ganttChart.Schedule(sortedProcesses.first());
             ganttChart.passTime(sortedProcesses.first().getBurstTime());
             time = ganttChart.getTime();
+            waitingProcesses.remove(sortedProcesses.first());
             sort();
-        }while(!sortedProcesses.isEmpty());
+        }while(!sortedProcesses.isEmpty() || (!waitingProcesses.isEmpty()));
         ganttChart.calculateWaitingTime();
         ganttChart.printGanttChart();
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
@@ -82,7 +84,7 @@ public class Priority extends SchedulingAlgorithm {
             System.out.println(p);
         }
         System.out.println("Average Waiting Time: " + averageWaitingTime + " ms");
-        System.out.println("Average Turnaround Time: " + averageWaitingTime + " ms");
+        System.out.println("Average Turnaround Time: " + averageTurnAroundTime + " ms");
     }
     
     public ArrayList<GanttChartBar> getGanttChartBars() {
@@ -103,8 +105,9 @@ public class Priority extends SchedulingAlgorithm {
             ganttChart.Schedule(sortedProcesses.first());
             ganttChart.passTime(sortedProcesses.first().getBurstTime());
             time = ganttChart.getTime();
+            waitingProcesses.remove(sortedProcesses.first());
             sort();
-        }while(!sortedProcesses.isEmpty());
+        }while(!sortedProcesses.isEmpty() || (!waitingProcesses.isEmpty()));
         ganttChart.calculateWaitingTime();
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
         averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();

@@ -5,11 +5,12 @@ import java.util.TreeSet;
 public class PriorityPreemptive extends Priority {
 
     int priority = Integer.MAX_VALUE;
+    ArrayList<Process> waitingProcesses = new ArrayList<Process>(processes);
 
     public PriorityPreemptive(ArrayList<Process> processes) {
         super(processes);
     }
-
+    
     @Override
     void sort() {
         if (sortedProcesses == null) {
@@ -58,10 +59,11 @@ public class PriorityPreemptive extends Priority {
             sortedProcesses.first().remainingTime--;
             if (sortedProcesses.first().remainingTime == 0) {
                 priority = Integer.MAX_VALUE;
+                waitingProcesses.remove(sortedProcesses.first());
             }
             time++;
             sort();
-        } while (!sortedProcesses.isEmpty());
+        } while (!sortedProcesses.isEmpty() || (!waitingProcesses.isEmpty()));
         ganttChart.calculateWaitingTime();
         ganttChart.printGanttChart();
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
@@ -87,10 +89,11 @@ public class PriorityPreemptive extends Priority {
             sortedProcesses.first().remainingTime--;
             if (sortedProcesses.first().remainingTime == 0) {
                 priority = Integer.MAX_VALUE;
+                waitingProcesses.remove(sortedProcesses.first());
             }
             time++;
             sort();
-        } while (!sortedProcesses.isEmpty());
+        } while (!sortedProcesses.isEmpty() || (!waitingProcesses.isEmpty()));
         ganttChart.calculateWaitingTime();
         averageWaitingTime = ganttChart.getTotalWaitingTime() / processes.size();
         averageTurnAroundTime = ganttChart.getTotalTurnAroundTime() / processes.size();
