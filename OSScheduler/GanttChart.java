@@ -57,6 +57,11 @@ public class GanttChart {
         /*If the process is not started yet or a difference process comes, add a new bar to the gantt chart*/
         if (last == -1 || ganttChartBars.get(last).getProcess() != process)
         {
+            if(time != 0 && ganttChartBars.isEmpty()){
+                GanttChartBar idle = new GanttChartBar(new Process(-1, time), 0);
+                idle.setEndTime(time);
+                ganttChartBars.add(idle);
+            }
             if(time < process.getArrivalTime()) // Idle time
             {
                 int idletime = process.getArrivalTime() - time;
