@@ -48,7 +48,9 @@ public class Process {
     public int getArrivalTime() {
         return arrivalTime;
     }
-
+    public void setArrivalTime(int time) {
+    	this.arrivalTime = time;
+    }
     public int getStartTime() {
         return startTime;
     }
