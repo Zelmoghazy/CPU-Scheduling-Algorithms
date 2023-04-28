@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SceneOneController">
+   <children>
+      <Label fx:id="label" alignment="CENTER" layoutY="14.0" prefHeight="18.0" prefWidth="600.0" text="Select Algorithm">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="FCFS" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" onAction="#roundRobin" text="FCFS">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="Algos" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="SJFP" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#roundRobin" text="SJF Preemptive" toggleGroup="$Algos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="SJFNP" layoutX="14.0" layoutY="151.0" mnemonicParsing="false" onAction="#roundRobin" text="SJF NON-Preamptive" toggleGroup="$Algos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="RR" layoutX="14.0" layoutY="190.0" mnemonicParsing="false" onAction="#roundRobin" text="Round Robin" toggleGroup="$Algos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <Button fx:id="button" layoutX="524.0" layoutY="346.0" mnemonicParsing="false" onAction="#selectAlgo" text="Next">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <RadioButton fx:id="PP" layoutX="14.0" layoutY="227.0" mnemonicParsing="false" onAction="#roundRobin" text="Priority Preemptive" toggleGroup="$Algos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="PNP" layoutX="15.0" layoutY="267.0" mnemonicParsing="false" onAction="#roundRobin" text="Priority NON-Preemptive" toggleGroup="$Algos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="287.0" prefHeight="100.0" prefWidth="497.0" spacing="10.0">
+         <children>
+            <Label fx:id="quantumLabel" disable="true" graphicTextGap="10.0" text="Enter Quantum Time" visible="false">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="quantum" disable="true" visible="false" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

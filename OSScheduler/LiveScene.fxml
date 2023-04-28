@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LiveSceneController">
+   <children>
+      <VBox alignment="CENTER" layoutX="367.0" layoutY="14.0" prefHeight="254.0" prefWidth="230.0" spacing="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="myLabel" text="Label">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="234.0" spacing="35.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#pause" text="Pause" />
+                  <Button mnemonicParsing="false" onAction="#play" text="Play" />
+               </children>
+            </HBox>
+            <Button fx:id="addProcessBTN" disable="true" mnemonicParsing="false" onAction="#addProcess" text="Add Process" />
+            <Button mnemonicParsing="false" onAction="#switchToStart" text="Choose Another Algorithm" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutY="254.0" prefHeight="146.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label text="GanttChart">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <ScrollPane prefHeight="116.0" prefWidth="600.0">
+               <content>
+                  <HBox fx:id="root" prefHeight="106.0" prefWidth="591.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <VBox layoutX="7.0" layoutY="1.0" prefHeight="246.0" prefWidth="262.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="46.0" prefWidth="230.0" spacing="20.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="16.0" prefWidth="94.0" text="Process ID">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label text="remaining CPU time">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="210.0" prefWidth="230.0">
+               <children>
+                  <ScrollPane prefHeight="206.0" prefWidth="237.0">
+                     <content>
+                        <HBox prefHeight="205.0" prefWidth="230.0">
+                           <children>
+                              <VBox fx:id="PID_pane" alignment="TOP_CENTER" prefHeight="206.0" prefWidth="110.0" />
+                              <VBox fx:id="remainingCPUTime_pane" alignment="TOP_CENTER" prefHeight="206.0" prefWidth="110.0" />
+                           </children>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

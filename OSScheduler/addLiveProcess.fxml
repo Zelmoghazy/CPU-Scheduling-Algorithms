@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" maxHeight="440.0" maxWidth="550.0" minHeight="138.0" minWidth="200.0" prefHeight="165.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addLiveProcessController">
+   <children>
+      <VBox alignment="CENTER" layoutX="-2.0" prefHeight="133.0" prefWidth="386.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="384.0" spacing="28.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Process ID">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="PID" alignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="386.0" spacing="25.0">
+               <children>
+                  <Label text="Burst Time">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="burstTime_Text" alignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="386.0" spacing="45.0">
+               <children>
+                  <Label fx:id="PriorityLabel" disable="true" text="Priority" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="priority_Text" alignment="CENTER" disable="true" text="0" visible="false" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="384.0" spacing="70.0">
+               <children>
+                  <Button fx:id="addProcee_btn" mnemonicParsing="false" onAction="#add" text="Add" textAlignment="CENTER" />
+                  <Button fx:id="cancel_btn" cancelButton="true" mnemonicParsing="false" onAction="#Cancel" text="Cancel" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

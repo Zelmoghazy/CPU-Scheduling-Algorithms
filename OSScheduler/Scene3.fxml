@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SceneThreeController">
+   <children>
+      <TableView fx:id="myTable" editable="true" layoutX="14.0" layoutY="30.0" prefHeight="193.0" prefWidth="598.0" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="30.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="53.60000455379486" text="PID" />
+          <TableColumn fx:id="arrival_time" prefWidth="104.79999542236328" text="arrival Time" />
+            <TableColumn fx:id="burst_time" prefWidth="102.39996337890625" text="Burst time" />
+            <TableColumn fx:id="priority" prefWidth="116.79998779296875" text="Periority" />
+            <TableColumn fx:id="waiting_time" prefWidth="111.20001220703125" text="waiting time" />
+            <TableColumn fx:id="turnarround_time" prefWidth="113.59994506835938" text="turnarround time" />
+        </columns>
+      </TableView>
+      <Label fx:id="myLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="5.0" prefHeight="18.0" prefWidth="600.0" text="Label" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <VBox layoutX="2.0" layoutY="222.0" prefHeight="89.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="90.0" prefWidth="601.0">
+                     <children>
+                        <HBox fx:id="myHBox" alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="600.0">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <Label fx:id="waitingTimeLabel" layoutX="53.0" layoutY="238.0" prefHeight="19.0" prefWidth="219.0" text="average waiting time = ">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="turnarroundTimeLabel" layoutX="315.0" layoutY="238.0" prefHeight="19.0" prefWidth="248.0" text="average turnarround time = ">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="274.0" prefHeight="27.0" prefWidth="168.0" text="Gantt Chart">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="369.0" layoutY="275.0" mnemonicParsing="false" onAction="#switchToStart" prefHeight="26.0" prefWidth="168.0" text="Choose Another Algorithm" />
+   </children>
+</AnchorPane>
