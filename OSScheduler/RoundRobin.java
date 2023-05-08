@@ -44,7 +44,7 @@ public class RoundRobin extends FCFS {
             process.remainingTime -= processedTime;
             if(process.remainingTime == 0)
             {
-                list.remove(index);
+                list.remove(list.indexOf(process));
                 if(list.size() > 0)
                 {
                     index = index % list.size();
@@ -62,6 +62,9 @@ public class RoundRobin extends FCFS {
                         readyQueue.add(p);
                         waiting.remove(p);
                     }
+                }
+                if(readyQueue.isEmpty()){
+                    index --;
                 }
                 if(!readyQueue.contains(process)){
                     readyQueue.add(process);
@@ -103,7 +106,7 @@ public class RoundRobin extends FCFS {
             process.remainingTime -= processedTime;
             if(process.remainingTime == 0)
             {
-                list.remove(index);
+                list.remove(list.indexOf(process));
                 if(list.size() > 0)
                 {
                     index = index % list.size();
@@ -121,6 +124,9 @@ public class RoundRobin extends FCFS {
                         readyQueue.add(p);
                         waiting.remove(p);
                     }
+                }
+                if(readyQueue.isEmpty()){
+                    index --;
                 }
                 if(!readyQueue.contains(process)){
                     readyQueue.add(process);
