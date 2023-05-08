@@ -63,7 +63,7 @@ public class RoundRobin extends FCFS {
                         waiting.remove(p);
                     }
                 }
-                if(readyQueue.isEmpty()){
+                if(readyQueue.isEmpty() && index > 0){
                     index --;
                 }
                 if(!readyQueue.contains(process)){
@@ -125,7 +125,7 @@ public class RoundRobin extends FCFS {
                         waiting.remove(p);
                     }
                 }
-                if(readyQueue.isEmpty()){
+                if(readyQueue.isEmpty() && index > 0){
                     index --;
                 }
                 if(!readyQueue.contains(process)){
