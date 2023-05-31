@@ -18,7 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class GUI extends Application {
+public class AnimationTest extends Application {
     private int stop_value;
     Map<Process, Integer> burst_count = new HashMap<>();
 
